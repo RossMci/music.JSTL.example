@@ -14,6 +14,7 @@ private final String filepath;
 	}
 
 // gets a product
+@Override
 	public Product getProduct(String code)
 	{
 		try
