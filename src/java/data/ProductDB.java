@@ -39,8 +39,8 @@ public class ProductDB implements ProductRepository
 			{
 				product = new Product();
 				product.setCode(resultSet.getString("productCode"));
-				product.setDescription(resultSet.getString("description"));
-				product.setPrice(resultSet.getInt("Price"));
+				product.setDescription(resultSet.getString("ProductDescription"));
+				product.setPrice(resultSet.getDouble("ProductPrice"));
 			}
 			return product;
 
@@ -74,8 +74,8 @@ public class ProductDB implements ProductRepository
 			{
 				Product product = new Product();
 				product.setCode(resultSet.getString("productCode"));
-				product.setDescription(resultSet.getString("description"));
-				product.setPrice(resultSet.getInt("Price"));
+				product.setDescription(resultSet.getString("ProductDescription"));
+				product.setPrice(resultSet.getDouble("ProductPrice"));
 				products.add(product);
 			}
 			return products;

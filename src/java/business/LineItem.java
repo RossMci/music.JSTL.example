@@ -2,11 +2,13 @@ package business;
 
 import java.io.Serializable;
 import java.text.NumberFormat;
+import java.util.Locale;
 
 public class LineItem implements Serializable {
 
     private Product product;
     private int quantity;
+	  Locale locale = Locale.US;
 
     public LineItem() {}
 
@@ -32,7 +34,9 @@ public class LineItem implements Serializable {
     }
 
     public String getTotalCurrencyFormat() {
-        NumberFormat currency = NumberFormat.getCurrencyInstance();
+	      
+        NumberFormat currency = NumberFormat.getCurrencyInstance(locale);
+		
         return currency.format(this.getTotal());
     }
 }

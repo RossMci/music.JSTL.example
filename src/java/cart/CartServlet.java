@@ -53,7 +53,7 @@ public class CartServlet extends HttpServlet {
 			}
 
 			Product product = productRepository.getProduct(productCode);
-           System.out.println(product);
+			System.out.println(product);
 			LineItem lineItem = new LineItem();
 			lineItem.setProduct(product);
 			lineItem.setQuantity(quantity);

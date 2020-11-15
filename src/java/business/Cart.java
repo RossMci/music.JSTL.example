@@ -20,7 +20,8 @@ public class Cart implements Serializable {
     }
 
     public void addItem(LineItem item) {
-        String code = item.getProduct().getCode();
+		Product product = item.getProduct();
+        String code = product.getCode();
         int quantity = item.getQuantity();
         for (int i = 0; i < items.size(); i++) {
             LineItem lineItem = items.get(i);
