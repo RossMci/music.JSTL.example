@@ -1,71 +1,85 @@
 package data;
 
+
 import business.Product;
 import java.io.*;
 import java.util.*;
 
-public class ProductIO {
-// gets a product
+public class ProductIORepository implements ProductRepository
+{
+private final String filepath;
+	public ProductIORepository(String filepath)
+	{
+		this.filepath = filepath;
+	}
 
-	private static Product getProduct(String code, String filepath) {
-		try {
+// gets a product
+	public Product getProduct(String code)
+	{
+		try
+		{
 			File file = new File(filepath);
-			BufferedReader in
-					= new BufferedReader(
-							new FileReader(file));
+			BufferedReader in = new BufferedReader(new FileReader(file));
 
 			String line = in.readLine();
-			while (line != null) {
+			while(line != null)
+			{
 				StringTokenizer t = new StringTokenizer(line, "|");
 				String productCode = t.nextToken();
-				if (code.equalsIgnoreCase(productCode)) {
+				if(code.equalsIgnoreCase(productCode))
+				{
 					String description = t.nextToken();
 					double price = Double.parseDouble(t.nextToken());
-					Product p = new Product();
-					p.setCode(code);
-					p.setDescription(description);
-					p.setPrice(price);
+					Product product = new Product();
+					product.setCode(code);
+					product.setDescription(description);
+					product.setPrice(price);
 					in.close();
-					return p;
+					return product;
 				}
 				line = in.readLine();
 			}
 			in.close();
 			return null;
-		} catch (IOException e) {
+		}
+		catch(IOException e)
+		{
 			System.err.println(e);
 			return null;
 		}
 	}
-
 	// gets all the products
-	private static ArrayList<Product> getProducts(String filepath) {
+	public ArrayList<Product> getProducts()
+	{
 		ArrayList<Product> products = new ArrayList<Product>();
 		File file = new File(filepath);
-		try {
-			BufferedReader in
-					= new BufferedReader(
-							new FileReader(file));
+		try
+		{
+			BufferedReader in = new BufferedReader(new FileReader(file));
 
 			String line = in.readLine();
-			while (line != null) {
+			while(line != null)
+			{
 				StringTokenizer t = new StringTokenizer(line, "|");
 				String code = t.nextToken();
 				String description = t.nextToken();
 				String priceAsString = t.nextToken();
 				double price = Double.parseDouble(priceAsString);
-				Product p = new Product();
-				p.setCode(code);
-				p.setDescription(description);
-				p.setPrice(price);
-				products.add(p);
+				Product product = new Product();
+				product.setCode(code);
+				product.setDescription(description);
+				product.setPrice(price);
+				products.add(product);
 				line = in.readLine();
 			}
 			in.close();
 			return products;
-		} catch (IOException e) {
+		}
+		catch(IOException e)
+		{
 			System.err.println(e);
 			return null;
 		}
 	}
+	
 }
